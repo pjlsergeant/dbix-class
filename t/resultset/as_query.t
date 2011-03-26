@@ -3,8 +3,6 @@ use warnings;
 
 use Test::More;
 
-plan ( tests => 5 );
-
 use lib qw(t/lib);
 use DBICTest;
 use DBIC::SqlMakerTest;
@@ -58,3 +56,9 @@ my $rscol = $art_rs->get_column( 'charfield' );
   my $subsel_rs = $schema->resultset("CD")->search( { cdid => { IN => $rs->get_column('cdid')->as_query } } );
   is($subsel_rs->count, $rs->count, 'Subselect on PK got the same row count');
 }
+
+my @f = $art_rs->search(undef, {
+   from => $art_rs->as_query,
+})->all;
+
+done_testing;

@@ -1052,6 +1052,7 @@ sub resultset {
 =back
 
 Returns the name of the result source, which will typically be the table
+name. This may be a scalar reference if the result source has a non-standard
 name.
 
 =head2 source_name

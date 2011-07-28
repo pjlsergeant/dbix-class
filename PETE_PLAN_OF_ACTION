@@ -1,0 +1,7 @@
+Attempt to make load_namespace optionally lazy loading
+
+12:55 <@ribasushi> pete: right, as I thought - every single source call goes through $schema->source
+12:56 <@ribasushi> pete: so all you need to do is crack open Schema.pm, populate the "known sources" list via the file 
+                   finder (separate sub already), but delay the loading until source(X) time
+12:56 <@ribasushi> pete: everything else will just work
+
